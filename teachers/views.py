@@ -1,15 +1,15 @@
-from django.shortcuts import HttpResponse
+from django.shortcuts import HttpResponse,render
 
 
 def home(request):
-    return HttpResponse("Welcome to Emobilis")
+    return render(request, 'home.html')
 
 
 def about(request):
-    return HttpResponse("About Emobilis")
+    return render(request, 'about.html')
 
 
 def contact(request):
-    return HttpResponse("Contact Emobilis")
+    return render(request, 'pages/contact.html')
 
 # Create your views here.
