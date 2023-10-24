@@ -1,6 +1,13 @@
 {% extends 'common.html' %}
 
 {% block body %}
-    <p>HomePage</p>
-    <h1>Welcome to Emobilis</h1>
+    {% if 2 is 'Two' %}
+        <h2>Done</h2>
+        
+    {% else %}
+        <h3>Not Done</h3>
+        
+    {% endif %}
+        <p>HomePage</p>
+        <h1>Welcome to Emobilis</h1>
 {% endblock %}
