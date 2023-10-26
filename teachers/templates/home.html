@@ -1,5 +1,7 @@
 {% extends 'common.html' %}
 
+{% load static %}
+
 {% block body %}
     {% if 2 is 'Two' %}
         <h2>Done</h2>
@@ -10,4 +12,7 @@
     {% endif %}
         <p>HomePage</p>
         <h1>Welcome to Emobilis</h1>
-{% endblock %}
+
+    <img src="{% static 'images/my_image.jpg' %}" alt="" style="width: 50%;">
+{% endblock %} 
+

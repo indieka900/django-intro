@@ -6,6 +6,7 @@ def home(request):
 
 
 def about(request):
-    return render(request, 'app2/about.html')
+    context =  {'navbar':'about1'}
+    return render(request, 'app2/about.html', context)
 
 # Create your views here.
