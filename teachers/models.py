@@ -6,5 +6,8 @@ class Student(models.Model):
     email = models.EmailField()
     age = models.IntegerField()
     image = models.ImageField(upload_to='students', default='profile.png')
+    
+    def __str__(self):
+        return self.name
 
 # Create your models here.

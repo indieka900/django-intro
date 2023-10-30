@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Student
 
 
 def home(request):
@@ -17,7 +18,12 @@ def add(request):
     return render(request, 'add.html', {'navbar':'add'})
 
 def viewData(request):
-    return render(request, 'viewdata.html', {'navbar':'viewdata'})
+    data = Student.objects.all()
+    context = {
+        'data':data,
+        'navbar':'viewdata',
+    }
+    return render(request, 'viewdata.html', context)
 
 # Create your views here.
 
