@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import Student
 
 
@@ -24,6 +24,12 @@ def viewData(request):
         'navbar':'viewdata',
     }
     return render(request, 'viewdata.html', context)
+
+def delete(request, id):
+    student = Student.objects.get(id=id)
+    student.delete()
+    
+    return redirect ('/viewdata')
 
 # Create your views here.
 

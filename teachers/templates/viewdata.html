@@ -13,6 +13,8 @@
             <th scope="col">Email</th>
             <th scope="col">Age</th>
             <th scope="col">Image</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
         </tr>
         </thead>
         <tbody>
@@ -22,11 +24,53 @@
                 <td> {{ student.name }} </td>
                 <td>{{ student.email }}</td>
                 <td>{{ student.age }}</td>
-                <td>{{ student.image }}</td>
+                <td><img src= "http://127.0.0.1:8000/media/{{ student.image }}" alt="{{ student.name }}" width="70" height="70"></td>
+                <td><a class="btn btn-warning" href="">Edit</a></td>
+                <td> <!-- Button trigger modal -->
+                    <!-- <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                      Delete
+                    </button> -->
+                    
+                    <!-- Modal -->
+                    <!-- <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">{{ student.name }}</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            Are you sure you want to delete {{ student.name }}?
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-danger">Delete</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div> -->
+                    <a class="btn btn-danger" href="/delete/{{ student.id }}">Delete</a>
+                </td>
             </tr>
             {% endfor %}
             
         </tbody>
     </table>
+    
 </div>
+<h2>Students Grid</h2>
+    <div class="row">
+        {% for item in data %}
+        <div class="col-md-3">
+            <div class="card mb-3" >
+                <img src="http://127.0.0.1:8000/media/{{ item.image }}" class="card-img-top" alt="{{item.name}}">
+                <div class="card-body">
+                    <p class="card-text"><h2>{{ item.name }}</h2></p>
+                    <p class="card-text">{{ item.email }}</p>
+                    <p class="card-text">{{ item.age }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 {% endblock %}
