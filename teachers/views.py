@@ -30,7 +30,7 @@ def add(request):
 
 def viewData(request):
     #data = Student.objects.all()
-    paginator = Paginator(Student.objects.all(), 2)
+    paginator = Paginator(Student.objects.all().order_by('?'), 2)
     new_page = request.GET.get('page')
     data = paginator.get_page(new_page)
     context = {
@@ -80,7 +80,7 @@ def viewStudent(request, id):
 
 
 def sliders(request):
-    sliders = Sliders.objects.all()
+    sliders = Sliders.objects.all().order_by('?')
     context = {'sliders':sliders,'navbar':'sliders',}
     return render(request, 'slider.html',context)
 
