@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import Student
+from .models import Student, Sliders
 from django.contrib import messages
 from django.core.paginator import Paginator
 
@@ -79,10 +79,10 @@ def viewStudent(request, id):
     return render(request, 'detail.html', context)
 
 
-def sliders(request, id):
-    # student = Student.objects.get(id=id)
-    # context = {'student':student}
-    return render(request, 'slider.html',)
+def sliders(request):
+    sliders = Sliders.objects.all()
+    context = {'sliders':sliders,'navbar':'sliders',}
+    return render(request, 'slider.html',context)
 
 
 # Create your views here.
