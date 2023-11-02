@@ -1,5 +1,7 @@
 from django.shortcuts import render,redirect
 from .models import Student
+from django.contrib import messages
+from django.core.paginator import Paginator
 
 
 def home(request):
@@ -22,11 +24,15 @@ def add(request):
         image = request.FILES['image']
         student = Student(name=name, age=age, image=image, email=email)
         student.save()
+        messages.success(request, 'Student added successfully')
         return redirect ('/viewdata')
     return render(request, 'add.html', {'navbar':'add'})
 
 def viewData(request):
-    data = Student.objects.all()
+    #data = Student.objects.all()
+    paginator = Paginator(Student.objects.all(), 2)
+    new_page = request.GET.get('page')
+    data = paginator.get_page(new_page)
     context = {
         'data':data,
         'navbar':'viewdata',
@@ -41,6 +47,7 @@ def delete(request, id):
 
 
 def edit(request, id):
+    student = Student.objects.get(id=id)
     if request.method == 'POST':
         name = request.POST.get('name')
         age = request.POST.get('age')
@@ -48,7 +55,7 @@ def edit(request, id):
         image = request.FILES['image']
         
         #get the specific student to edit
-        student = Student.objects.get(id=id)
+        
         
         #asign the fields with the new data
         student.name = name
@@ -62,7 +69,20 @@ def edit(request, id):
         
         #save the student with the new data
         student.save()
-    return render(request, 'edit.html')
+        return redirect ('/viewdata')
+    return render(request, 'edit.html',{'student':student})
+
+
+def viewStudent(request, id):
+    student = Student.objects.get(id=id)
+    context = {'student':student}
+    return render(request, 'detail.html', context)
+
+
+def sliders(request, id):
+    # student = Student.objects.get(id=id)
+    # context = {'student':student}
+    return render(request, 'slider.html',)
 
 
 # Create your views here.

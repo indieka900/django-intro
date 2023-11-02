@@ -5,6 +5,12 @@
 {% block body %}
 <h2>Students</h2>
 <div class="container">
+  {% for message in messages %}
+      <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+        <strong>{{message}}</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
     <table class="table">
         <thead>
         <tr>
@@ -18,14 +24,16 @@
         </tr>
         </thead>
         <tbody>
+          
+          
             {% for student in data %}
               <tr>
                 <th scope="row">{{ student.id }}</th>
-                <td> {{ student.name }} </td>
+                <td> <a href="/detail/{{ student.id }}">{{ student.name }}</a> </td>
                 <td>{{ student.email }}</td>
                 <td>{{ student.age }}</td>
-                <td><img src= "http://127.0.0.1:8000/media/{{ student.image }}" alt="{{ student.name }}" width="70" height="70"></td>
-                <td><a class="btn btn-warning" href="">Edit</a></td>
+                <td><img src= "http://127.0.0.1:8000/media/{{ student.image }}" alt="{{ student.name }}" width="70" height="70" class="rounded"></td>
+                <td><a class="btn btn-warning" href="/edit/{{ student.id }}">Edit</a></td>
                 <td> <!-- Button trigger modal -->
                     <!-- <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                       Delete
@@ -56,6 +64,38 @@
             
         </tbody>
     </table>
+
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+    
+    
+    
+    {% if data.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page=1">&laquo First</a></li>
+    
+      <li class="page-item"><a class="page-link" href="?page={{ data.previous_page_number }}">Previous</a></li>
+    
+    {% endif %}
+    
+    
+    <li class="page-item disabled"><a href="#" class="page-link">Page {{ data.number }} of {{ data.paginator.num_pages }}</a></li>
+    
+    
+    {% for i in nums %}
+      <li class="page-item"><a class="page-link" href="?page={{ forloop.counter }}">{{ forloop.counter }}</a></li>
+    
+    {% endfor %}
+    
+    
+    {% if data.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{ data.next_page_number }}">Next</a></li>
+    
+      <li class="page-item"><a class="page-link" href="?page={{ data.paginator.num_pages }}">Last &raquo</a></li>
+    
+    {% endif %}
+    
+     </ul>
+    </nav>
     
 </div>
 <h2>Students Grid</h2>

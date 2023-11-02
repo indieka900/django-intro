@@ -1,0 +1,17 @@
+{% extends 'common.html' %}
+
+{% load static %}
+
+{% block body %}
+    {% if 2 is 'Two' %}
+        <h2>Done</h2>
+        
+    {% else %}
+        <h3>Not Done</h3>
+        
+    {% endif %}
+        <p>HomePage</p>
+        <h1>{{ student.name }}</h1>
+
+    <img src="http://127.0.0.1:8000/media/{{ student.image }}" class="card-img-top" alt="{{student.name}}" style="width: 50%;">
+{% endblock %} 

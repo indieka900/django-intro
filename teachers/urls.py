@@ -11,4 +11,6 @@ urlpatterns = [
     path('viewdata/',views.viewData, name='viewdata'),
     path('delete/<id>', views.delete, name='delete'),
     path('edit/<id>', views.edit, name='edit'),
+    path('detail/<id>', views.viewStudent, name='detail'),
+    path('sliders/', views.sliders, name='sliders'),
 ]

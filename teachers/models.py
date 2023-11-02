@@ -9,5 +9,14 @@ class Student(models.Model):
     
     def __str__(self):
         return self.name
+    
+    
+class Sliders(models.Model):
+    text1 = models.CharField(max_length=100)
+    text2 = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='sliders', default='profile.png')
+    
+    def __str__(self):
+        return self.text1
 
 # Create your models here.

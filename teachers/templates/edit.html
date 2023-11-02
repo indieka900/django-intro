@@ -8,22 +8,23 @@
     <div class="col-md-6">
       <div class="col-md-12">
         <label for="inputEmail4" class="form-label">Email</label>
-        <input type="email" class="form-control" id="inputEmail4" name="email">
+        <input type="email" class="form-control" id="inputEmail4" name="email" value="{{student.email}}">
       </div>
       <div class="col-md-12">
         <label for="inputPassword4" class="form-label">Name</label>
-        <input type="text" class="form-control" id="inputName4" name="name">
+        <input type="text" class="form-control" id="inputName4" name="name"  value="{{student.name}}">
       </div>
     </div>
     <div class="col-md-6">
       <div class="col-md-12">
         <label for="inputZip" class="form-label">Age</label>
-        <input type="number" class="form-control" id="inputZip" name="age">
+        <input type="number" class="form-control" id="inputZip" name="age"  value="{{student.age}}">
       </div>
       
       <div class="col-md-12">
         <label for="inputZip" class="form-label">Image</label>
-        <input type="file" class="form-control" id="inputZip" name="image">
+        <img src=" /static/{{student.email}}" alt="">
+        <input type="file" class="form-control" id="inputZip" name="image"  value="{{student.image}}">
       </div>
     </div>
     <div class="col-12">
