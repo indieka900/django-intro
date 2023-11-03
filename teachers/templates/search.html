@@ -3,9 +3,10 @@
 {% load static %}
 
 {% block body %}
-<h2>Students</h2>
+{% if data %}
+<h2>Search Results</h2>
 <div class="container">
-  {% if data %}
+  
     
   
   {% for message in messages %}
@@ -45,47 +46,17 @@
             
         </tbody>
     </table>
+
     {% else %}
 
-      <h1>Data not found</h1>
-    {% endif %}
+        <h2>No data found for <u>{{query}}</u> </h2>
 
-    <nav aria-label="Page navigation example">
-      <ul class="pagination justify-content-center">
-    
-    
-    
-    {% if data.has_previous %}
-      <li class="page-item"><a class="page-link" href="?page=1">&laquo First</a></li>
-    
-      <li class="page-item"><a class="page-link" href="?page={{ data.previous_page_number }}">Previous</a></li>
-    
     {% endif %}
-    
-    
-    <li class="page-item disabled"><a href="#" class="page-link">Page {{ data.number }} of {{ data.paginator.num_pages }}</a></li>
-    
-    
-    {% for i in nums %}
-      <li class="page-item"><a class="page-link" href="?page={{ forloop.counter }}">{{ forloop.counter }}</a></li>
-    
-    {% endfor %}
-    
-    
-    {% if data.has_next %}
-      <li class="page-item"><a class="page-link" href="?page={{ data.next_page_number }}">Next</a></li>
-    
-      <li class="page-item"><a class="page-link" href="?page={{ data.paginator.num_pages }}">Last &raquo</a></li>
-    
-    {% endif %}
-    
-     </ul>
-    </nav>
     
 </div>
-<h2>Students Grid</h2>
+
   {% if data %}
-    
+    <h2>Students Grid</h2>
   
     <div class="row">
         {% for item in data %}
@@ -96,12 +67,12 @@
                     <p class="card-text"><h2>{{ item.name }}</h2></p>
                     <p class="card-text">{{ item.email }}</p>
                     <p class="card-text">{{ item.age }}</p>
+                    <p class="card-text">{{ item.created_at}}</p>
                 </div>
             </div>
         </div>
         {% endfor %}
     </div>
-    {% else %}
-    <h2>No records found</h2>
+    
   {% endif %}
 {% endblock %}

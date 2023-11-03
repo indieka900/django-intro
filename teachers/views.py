@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from .models import Student, Sliders
 from django.contrib import messages
 from django.core.paginator import Paginator
+from django.db.models import Q
 
 
 def home(request):
@@ -42,6 +43,7 @@ def viewData(request):
 def delete(request, id):
     student = Student.objects.get(id=id)
     student.delete()
+    messages.success(request, 'Student deleted successfully')
     
     return redirect ('/viewdata')
 
@@ -83,6 +85,15 @@ def sliders(request):
     sliders = Sliders.objects.all().order_by('?')
     context = {'sliders':sliders,'navbar':'sliders',}
     return render(request, 'slider.html',context)
+
+def result(request):
+    if request.method == 'GET':
+        query = request.GET.get('query')
+        if query:
+            student = Student.objects.filter(Q(name__icontains=query) | Q(email__icontains=query) | Q(age__icontains=query))
+            return render(request, 'search.html', {'data': student,'query':query})
+
+        return render(request, 'search.html')
 
 
 # Create your views here.

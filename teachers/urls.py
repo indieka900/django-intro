@@ -13,4 +13,5 @@ urlpatterns = [
     path('edit/<id>', views.edit, name='edit'),
     path('detail/<id>', views.viewStudent, name='detail'),
     path('sliders/', views.sliders, name='sliders'),
+    path('result/', views.result, name='result'),
 ]

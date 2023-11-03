@@ -31,6 +31,14 @@
         <a class="{% if navbar == 'sliders' %} two {% endif %}" href="{% url 'teachers:sliders' %}">Sliders</a>
 
     </div>
+    <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+          <form class="d-flex" role="search" method="get" action="{% url 'teachers:result' %}">
+            <input class="form-control me-2" type="search" name="query" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
 
     <!-- <div class="ones">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae reprehenderit officia, cumque quod accusamus veritatis! Mollitia debitis fugiat commodi reprehenderit aliquid facere ducimus cum eaque sequi possimus, quos dignissimos soluta!
